@@ -18,8 +18,8 @@ function Header() {
             <i class="fa-solid fa-cart-shopping ms-2 me-3"></i>
             ShopNest
           </MDBNavbarBrand>
-          <Link to={'/wishlist'}>
-          <a style={{marginLeft:'850px', display:'flex', boxShadow:'none'}}><i class="fa-solid fa-heart text-light"></i>
+          <Link id='nav2' to={'/wishlist'}>
+          <a style={{display:'flex', boxShadow:'none'}}><i class="fa-solid fa-heart text-light"></i>
           <Badge style={{backgroundColor:'rgb(20, 120, 200)'}} bg="text-light ms-2">{wishlistArray.length}</Badge></a>
           </Link>
           <Link to={'/cart'}>

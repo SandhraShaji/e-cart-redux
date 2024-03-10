@@ -3,7 +3,15 @@ import { Col, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteFromCart, emptyCart } from '../Redux/Slice/cartSlice'
 import { useNavigate } from 'react-router-dom'
-
+import {
+  MDBCard,
+  MDBCardBody,
+  MDBCardTitle,
+  MDBCardText,
+  MDBCardImage,
+  MDBBtn,
+  MDBRipple
+} from 'mdb-react-ui-kit';
 function Cart() {
   const navigate = useNavigate()
   const cartArray = useSelector((state)=>state.cartReducer)
@@ -32,32 +40,25 @@ function Cart() {
       {
         cartArray.length>0?
         <Row className='p-5' style={{width:'100%'}}>
-        <Col>
-          <table className='border border-2 text-center'>
-            <thead>
-              <tr>
-                <th className='p-2 border border-2'>Id</th>
-                <th className='p-2 border border-2'>Name</th>
-                <th className='p-2 border border-2'>Image</th>
-                <th className='p-2 border border-2'>Price</th>
-                <th className='p-2 border border-2'>Action</th>
-              </tr>
-            </thead>
-            <tbody>
+          
               {
-                cartArray.length>0?cartArray.map((item,index)=>(
-                  <tr>
-                    <td className='p-2 border border-2'>{index+1}</td>
-                    <td className='p-2 border border-2'>{item.title}</td>
-                    <td className='p-2 border border-2'><img width={'200px'} height={'150px'} src={item.thumbnail} alt="" /></td>
-                    <td className='p-2 border border-2'>Rs. {item.price}</td>
-                    <td className='p-2 border border-2'><i onClick={()=>dispatch(deleteFromCart(item.id))} className='fa-solid fa-trash text-danger'></i></td>
-                  </tr>
+                cartArray.length>0?cartArray.map((item,index)=>( 
+                  <Col> 
+                  <MDBCard className='my-3' style={{width:'180px', height:'280px', backgroundColor:'rgba(20, 120, 200, 0.15)', border:'none', boxShadow:'1px 1px 3px grey'}}>
+                  <MDBRipple rippleColor='light' rippleTag='div' className='bg-image hover-overlay'>
+                    <MDBCardImage style={{width:'180px',height:'150px'}} src={item.thumbnail} fluid alt='...' />
+                    <a><div className='mask' style={{ backgroundColor: 'rgba(251, 251, 251, 0.15)' }}></div></a>
+                  </MDBRipple>
+                  <MDBCardBody>
+                    <MDBCardTitle>{item.title}</MDBCardTitle>
+                    <div id='div1' className='text-center ms-4'>
+                    <MDBCardText className='text-danger text-center'><h5>${item.price}</h5></MDBCardText>
+                    </div>
+                    <MDBBtn id='c1' onClick={()=>dispatch(deleteFromCart(item.id))} style={{width:'30px', height:'30px', paddingInline:'5px', paddingBlock:'5px', backgroundColor:'crimson'}} className='ms-5' href='#'><i class="fa-solid fa-trash text-light"></i></MDBBtn>
+                  </MDBCardBody>
+                </MDBCard></Col>
                 )):'Empty cart'
               }
-            </tbody>
-          </table>
-        </Col>
         <Col>
           <div style={{border:'none'}} className='card shadow p-4 text-center'>
             <h3 className='text-center my-3'>Cart Summary</h3>

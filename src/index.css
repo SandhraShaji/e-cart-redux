@@ -24,3 +24,11 @@
     right: 8px;
     box-shadow: none;
 }
+#nav2{
+    margin-left: 850px;
+}
+@media only screen and (max-width: 600px) {
+    #nav2{
+        margin-left: 50px;
+    }
+  }
